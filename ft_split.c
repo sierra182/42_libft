@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:39:24 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/13 14:30:17 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/13 15:01:37 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	**ft_split(char const *s, char c)
 	// 	return (s_split);
 	// }
 	free(s_trim);
-	s_split = (char **) calloc(n_words + 1, sizeof (char *));
+	s_split = (char **) ft_calloc(n_words + 1, sizeof (char *));
 	if (!s_split)
 		return (NULL);
 	//s_split[n_words] = NULL;
