@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:39:24 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/13 15:20:41 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:05:46 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ static char	**ft_assign_words(char const *s, char c,
 	s_chr = "a";
 	//s2 = "a";
 	char *s_trim_av = NULL;	
+	int i = 0;
 	while (s_chr)
-	{
-		s_trim = ft_strtrim(s2, &c);
+	{//ft_putstr_fd("f\n",1);
+		s_trim = ft_strtrim(s, &c);
 		if (!s_trim)
 			return (NULL);
 		free(s_trim_av);
@@ -40,15 +41,16 @@ static char	**ft_assign_words(char const *s, char c,
 		if (!*s_split)
 			return (NULL);
 		s_trim_av = s_trim;
-		s2 = s_chr;
+		s = s_chr;
 		s_split++;
-		//free(s);
+		//free(s_trim);
 	}
-	
+	//free(s_trim_av);
 	free(s_trim);
 	free(s2);
 	return (s_split - n_words);
 }
+
 
 char	**ft_split(char const *s, char c)
 {
@@ -59,14 +61,15 @@ char	**ft_split(char const *s, char c)
 
 	s1 = s;
 	n_words = 0;
-	//if(!s)
-	//	return (NULL);
-	// if (!*s)
-	// {
-	// 	s_split = (char **) malloc(sizeof (char *));
-	// 	*s_split = NULL;
-	// 	return (s_split);
-	// }
+	if(!s)
+		return (NULL);
+	if (!*s)
+	{
+		s_split = (char **) malloc(sizeof (char *));
+		*s_split = NULL;
+		return (s_split);
+	}
+	
 	char *s_trim_av = NULL;
 	while (s1)
 	{
@@ -79,13 +82,15 @@ char	**ft_split(char const *s, char c)
 			n_words++;
 		s_trim_av = s_trim;
 	}
-	// if (!n_words)
-	// {
-	// 	s_split = (char **) malloc(sizeof (char *) * (1));
-	// 	*s_split = NULL;
-	// 	free(s_trim);
-	// 	return (s_split);
-	// }
+	
+	if (!n_words)
+	{
+		s_split = (char **) malloc(sizeof (char *) * (1));
+		*s_split = NULL;
+		free(s_trim);
+		return (s_split);
+	}
+	//n_words = 4;
 	free(s_trim);
 	s_split = (char **) ft_calloc(n_words + 1, sizeof (char *));
 	if (!s_split)
@@ -94,14 +99,27 @@ char	**ft_split(char const *s, char c)
 	return (ft_assign_words(s, c, s_split, n_words));
 }
 
+
 #include <stdio.h>
 
 int	main(void)
 {
-	char	*s = "xxxsplitxxmoi";
+	char	*s = "xxxsplitxxmoixlaxface";
 	char	**split;
 	int		i;
-	
+	printf("test\n");
+	// split = (char **) ft_calloc(4 + 1, sizeof (char *));
+	// ft_assign_words(s, 'x', split, 4);
+	split = ft_split(s, 'x');
+	i = 0;
+	while (split[i])
+		printf("%s\n", split[i++]);	
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+	/*
+	ft_split(s, 'x');
 	printf("mysplit\n\n");
 	i = 0;
 	split = ft_split(s, 'x');
@@ -111,5 +129,8 @@ int	main(void)
 	while (split[i])
 		free(split[i++]);
 	free(split);
+	*/
+
+	
 	return (0);
 }
