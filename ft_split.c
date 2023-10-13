@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:39:24 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/12 22:02:25 by seblin           ###   ########.fr       */
+/*   Updated: 2023/10/13 14:30:17 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ char	**ft_split(char const *s, char c)
 	n_words = 0;
 	//if(!s)
 	//	return (NULL);
-	if (!*s)
-	{
-		s_split = (char **) malloc(sizeof (char *));
-		*s_split = NULL;
-		return (s_split);
-	}
+	// if (!*s)
+	// {
+	// 	s_split = (char **) malloc(sizeof (char *));
+	// 	*s_split = NULL;
+	// 	return (s_split);
+	// }
 	while (s1)
 	{
 		s_trim = ft_strtrim(s1, &c);
@@ -76,17 +76,37 @@ char	**ft_split(char const *s, char c)
 		if(*s_trim)
 			n_words++;
 	}
-	if (!n_words)
-	{
-		s_split = (char **) malloc(sizeof (char *) * (1));
-		*s_split = NULL;
-		free(s_trim);
-		return (s_split);
-	}
+	// if (!n_words)
+	// {
+	// 	s_split = (char **) malloc(sizeof (char *) * (1));
+	// 	*s_split = NULL;
+	// 	free(s_trim);
+	// 	return (s_split);
+	// }
 	free(s_trim);
 	s_split = (char **) calloc(n_words + 1, sizeof (char *));
 	if (!s_split)
 		return (NULL);
 	//s_split[n_words] = NULL;
 	return (ft_assign_words(s, c, s_split, n_words));
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*s = "xxxsplitxxmoi";
+	char	**split;
+	int		i;
+	
+	printf("mysplit\n\n");
+	i = 0;
+	split = ft_split(s, 'x');
+	while (split[i])
+		printf("%s\n", split[i++]);	
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+	return (0);
 }

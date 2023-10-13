@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:21:10 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/10 16:50:49 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/13 14:37:07 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*ft_strndup(const char *s, size_t n)
 		size = s_len;
 	else
 		size = n;
-	s2 = (char *) malloc(sizeof (char) * (size + 1));
+	s2 = (char *) calloc(size + 1, sizeof (char));
 	if (!s2)
 		return (NULL);
 	ft_strlcpy(s2, s, size + 1);
@@ -46,7 +46,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 			break ;
 		s1_len--;
 	}
-	while (*s1)
+	while (*s1 && s1_len)
 	{
 		i = 0;
 		while (set[i] && *s1 != set[i])
