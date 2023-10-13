@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 14:06:02 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/12 10:35:25 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/09 19:08:31 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -840,16 +840,50 @@ int	ft_test_strnstr(void)
 	size_t 	len;
 	
 	is_valid = 1;
-	
+	/*
 	res = NULL;
 	big = "crois tu etre en train de respirer de l'air?";
-	little = "crois tu etre en train de respirer de l'air?";
-	len = 46;
-	res = ft_strnstr(big, big, len);
+	little = "train";
+	len = 5;
+	res = ft_strnstr(big, little, len);
 	printf("ft_strnstr: %s\n", res);
-	if (strcmp(res,"crois tu etre en train de respirer de l'air?"))
-		is_valid = 0;
+		
+	res = NULL;    
+	big = "crois tu etre en train de respirer de l'air?";
+	little = "train"; //
+	len = 2;
+	res = ft_strnstr(big, little, len);
+	printf("ft_strnstr: %s\n", res);
 	
+	res = NULL;    
+	big = "crois tu etre en train de respirer de l'air?";
+	little = ""; //
+	len = 5;
+	res = ft_strnstr(big, little, len);
+	printf("ft_strnstr: %s\n", res);
+	
+	res = NULL;    
+	big = "crois tu etre en train de respirer de l'air?";
+	little = "air? "; //
+	len = 4;
+	res = ft_strnstr(big, little, len);
+	printf("ft_strnstr: %s\n", res);
+	
+	res = NULL;    // return null , normal ?
+	big = "";
+	little = "train";
+	len = 5;
+	res = ft_strnstr(big, little, len);
+	printf("ft_strnstr: %s\n", res);	
+	
+	res = NULL; // return null , normal ?
+	big = "crois tu etre en train de respirer de l'air?";
+	little = "train";
+	len = 6;
+	res = ft_strnstr(big, little, len);
+	printf("ft_strnstr: %s\n", res);
+	*/
+
 	res = NULL;
 	big = "crois tu etre en train de respirer de l'air?";
 	little = "train";
@@ -860,7 +894,7 @@ int	ft_test_strnstr(void)
 		is_valid = 0;
 	
 	res = NULL;    
-	big = "crois tu etre en train de respirer de l'air?"; 
+	big = "crois tu etre en train de respirer de l'air?"; // verif libft war
 	little = "train"; 
 	len = 22; 
 	res = ft_strnstr(big, little, len);

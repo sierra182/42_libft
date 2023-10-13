@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:02:04 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/11 14:49:43 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/12 20:04:01 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*ft_lstnew(void *content)
 	new_l = (t_list *) malloc(sizeof(t_list));
 	if (!new_l)
 		return (NULL);
-	new_l->content;
+	new_l->content = content;
 	new_l->next = NULL;
 	return (new_l);
 }

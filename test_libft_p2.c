@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:09:19 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/12 14:13:44 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/11 11:37:36 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "libft.h"
 #include <stdio.h>
 #include <limits.h>
-#include <stdint.h>
 
 int	ft_test_substr(void)
 {
@@ -86,13 +85,6 @@ int	ft_test_substr(void)
 	sub_s = NULL;
 	sub_s = ft_substr(s, start, len);
 	printf("9 ft_substr: %s\n", sub_s);
-	
-	s = "hola";
-	start = UINT_MAX;
-	len = SIZE_MAX;
-	sub_s = NULL;
-	sub_s = ft_substr(s, start, len);
-	printf("10 ft_substr: %s\n", sub_s);
 	return (is_valid);
 	/*
 	** faut il gerer le cas ou start commence apres la string, s null ?
@@ -184,12 +176,6 @@ int	ft_test_split(void)
 		
 	is_valid = 1;
 	
-	s = "";		
-	s_split = ft_split(s, 'a');
-	while (*s_split)
-		printf("1%s\n", *s_split++);
-	printf("\n");
-	
 	s = "xxsplitxmoixlaxfacexxx";		
 	s_split = ft_split(s, 'x');
 	while (*s_split)
@@ -247,7 +233,7 @@ int	ft_test_split(void)
 	s = "";
 	s_split = ft_split(s, 'x');
 	while (*s_split)
-		printf("f%s\n", *s_split++);
+		printf("l%s\n", *s_split++);
 	printf("\n");
 	
 	return (is_valid);
