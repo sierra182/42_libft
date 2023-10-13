@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:09:19 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/11 11:37:36 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/13 12:55:35 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,7 @@ int	ft_test_substr(void)
 	sub_s = NULL;
 	sub_s = ft_substr(s, start, len);
 	printf("8 ft_substr: %s\n", sub_s);
-	
-	s = NULL;
-	start = 3;
-	len = 42;
-	sub_s = NULL;
-	sub_s = ft_substr(s, start, len);
-	printf("9 ft_substr: %s\n", sub_s);
+		
 	return (is_valid);
 	/*
 	** faut il gerer le cas ou start commence apres la string, s null ?
