@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:39:24 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/13 17:23:14 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/13 18:57:12 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	**ft_assign_words(char const *s, char c,
 	s_chr = "a";
 	//s2 = "a";
 	char *s_trim_av = NULL;	
-	int i = 0;
+	
 	while (s_chr)
 	{//ft_putstr_fd("f\n",1);
 		s_trim = ft_strtrim(s, &c);
@@ -61,8 +61,18 @@ char	**ft_split(char const *s, char c)
 
 	s1 = s;
 	n_words = 0;
-	if(!s)
-		return (NULL);
+	//if(!s)
+	//	return (NULL);
+	if (c == '\0' && *s)	
+	{
+		//return (NULL);
+		
+			s_split = (char **) malloc(sizeof (char *) * (2));
+		s_split[0] = ft_strdup(s);
+		s_split[1] = NULL;
+		return (s_split);
+		
+	}
 	if (!*s)
 	{
 		s_split = (char **) malloc(sizeof (char *));
@@ -99,12 +109,12 @@ char	**ft_split(char const *s, char c)
 	return (ft_assign_words(s, c, s_split, n_words));
 }
 
-
+/*
 #include <stdio.h>
 
 int	main(void)
 {
-	char	*s = "nonempty";
+	char	*s = "j";
 	char	**split;
 	int		i;
 	printf("test\n");
@@ -118,7 +128,7 @@ int	main(void)
 	while (split[i])
 		free(split[i++]);
 	free(split);
-	/*
+	
 	ft_split(s, 'x');
 	printf("mysplit\n\n");
 	i = 0;
@@ -129,8 +139,9 @@ int	main(void)
 	while (split[i])
 		free(split[i++]);
 	free(split);
-	*/
+	
 
 	
 	return (0);
 }
+*/

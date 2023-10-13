@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:36:21 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/12 20:03:23 by seblin           ###   ########.fr       */
+/*   Updated: 2023/10/13 21:02:59 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,18 @@ t_list	*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *))
 	link = NULL;
 	while (lst)
 	{
-		link = ft_lstnew(f(lst->content));
+		void* cnt = f(lst->content);
+		link = ft_lstnew(cnt);
 		if (!link)
+		{
+			del(cnt); //del(lst->content);
+			ft_lstclear(&new_l, del);
+			//free(cnt);
 			return (NULL);
+		}
 		ft_lstadd_back(&new_l, link);
 		lst = lst->next;
 	}
-	ft_lstclear(&lst, del);
+	//ft_lstclear(&lst, del);
 	return (new_l);
 }
