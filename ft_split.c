@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:39:24 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/13 15:01:37 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/13 15:20:41 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,17 @@ char	**ft_split(char const *s, char c)
 	// 	*s_split = NULL;
 	// 	return (s_split);
 	// }
+	char *s_trim_av = NULL;
 	while (s1)
 	{
 		s_trim = ft_strtrim(s1, &c);
 		if (!s_trim)
 			return (NULL);
+		free(s_trim_av);
 		s1 = ft_strchr(s_trim, c);
 		if(*s_trim)
 			n_words++;
+		s_trim_av = s_trim;
 	}
 	// if (!n_words)
 	// {
