@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_libft_p2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:09:19 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/13 12:55:35 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/13 12:59:41 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_test_substr(void)
 	sub_s = NULL;
 	sub_s = ft_substr(s, start, len);
 	printf("8 ft_substr: %s\n", sub_s);
-		
+		//blag
 	return (is_valid);
 	/*
 	** faut il gerer le cas ou start commence apres la string, s null ?
