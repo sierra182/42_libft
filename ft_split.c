@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:39:24 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/13 17:05:46 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/13 17:23:14 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,13 @@ char	**ft_split(char const *s, char c)
 
 int	main(void)
 {
-	char	*s = "xxxsplitxxmoixlaxface";
+	char	*s = "nonempty";
 	char	**split;
 	int		i;
 	printf("test\n");
 	// split = (char **) ft_calloc(4 + 1, sizeof (char *));
 	// ft_assign_words(s, 'x', split, 4);
-	split = ft_split(s, 'x');
+	split = ft_split(s, '\0');
 	i = 0;
 	while (split[i])
 		printf("%s\n", split[i++]);	
