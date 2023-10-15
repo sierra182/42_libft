@@ -5,150 +5,341 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 18:39:24 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/14 07:41:12 by seblin           ###   ########.fr       */
+/*   Created: 2023/10/14 10:54:21 by svidot            #+#    #+#             */
+/*   Updated: 2023/10/15 17:55:28 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 #include <stdlib.h>
-
-static char	**ft_assign_words(char const *s, char c,
-								char **s_split, size_t n_words)
+/*
+static char	*ft_strndup(const char *s, size_t n)
 {
-	char	*s_trim;
 	char	*s2;
-	char	*s_chr;
+	size_t	s_len;
+	size_t	size;
 
-	char ** split_save = s_split;
-	s2 = ft_strdup(s);
+	s_len = ft_strlen(s);
+	if (n > s_len)
+		size = s_len;
+	else
+		size = n;
+	s2 = (char *) ft_calloc(size + 1, sizeof (char));
 	if (!s2)
-	{
-		free(s_split);
 		return (NULL);
-	}
-	s_trim = NULL;
-	s_chr = "a";
-	char *s_trim_av = NULL;	
-	size_t n_words_save = n_words;
-	while (n_words_save--)
-	{
-		s_trim = ft_strtrim(s, &c);
-		if (!s_trim)
-		{
-			
-			 int i = 0;
-			 while (split_save[i])
-			 {
-			 	free(split_save[i]);
-				i++;
-			 }
-			 free(split_save);
-			
-			free(s2);
-			//free(s_trim);
-			free(s_trim_av);
-			return (NULL);
-		}
-		free(s_trim_av);
-		s_chr = ft_strchr(s_trim, c);
-		if (s_chr && *s_chr)
-			*s_split = ft_substr(s_trim, 0, s_chr - s_trim);
-		else
-			*s_split = ft_substr(s_trim, 0, ft_strlen(s_trim));
-		if (!*s_split)
-		{
-			
-			 int i = 0;
-			  while (split_save[i] != NULL)
-			 {
-			 	free(split_save[i]);
-				i++;
-			 }
-			 free(split_save);
-			
-			free(s2);
-			free(s_trim);
-			//free(s_trim_av);
-			return (NULL);
-		}
-		s_trim_av = s_trim;
-		s = s_chr;
-		s_split++;
-		//free(s_trim);
-	}
-	//free(s_trim_av);
-	free(s_trim);
-	free(s2);
-	return (s_split - n_words);
+	ft_strlcpy(s2, s, size + 1);
+	return (s2);
 }
-
 
 char	**ft_split(char const *s, char c)
 {
-	char		**s_split;
-	char		*s_trim = NULL;
-	char const	*s1;
-	size_t			n_words;
-
-	s1 = s;
-	n_words = 0;	
-	char *s_trim_av = NULL;
-	while (s1 && *s1)
-	{
-		s_trim = ft_strtrim(s1, &c); //
-		if (!s_trim)
-		{
-			free(s_trim_av);
-			return (NULL);
-		}
-		free(s_trim_av);
-		s1 = ft_strchr(s_trim, c);
-		if (*s_trim)
-			n_words++;
-		s_trim_av = s_trim;
-	}	
-	free(s_trim);	
-	s_split = (char **) ft_calloc(n_words + 1, sizeof (char *)); //
-	if (!s_split)
-		return (NULL);	
-	return (ft_assign_words(s, c, s_split, n_words));
-}
-
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char	*s = "j";
 	char	**split;
-	int		i;
-	printf("test\n");
-	// split = (char **) ft_calloc(4 + 1, sizeof (char *));
-	// ft_assign_words(s, 'x', split, 4);
-	split = ft_split(s, '\0');
-	i = 0;
-	while (split[i])
-		printf("%s\n", split[i++]);	
-	i = 0;
-	while (split[i])
-		free(split[i++]);
-	free(split);
-	
-	ft_split(s, 'x');
-	printf("mysplit\n\n");
-	i = 0;
-	split = ft_split(s, 'x');
-	while (split[i])
-		printf("%s\n", split[i++]);	
-	i = 0;
-	while (split[i])
-		free(split[i++]);
-	free(split);
-	
+	int		n_word;
+	int		pass;
+	int		n_letter;
 
-	
-	return (0);
+	n_letter = 0;
+	n_word = 0;
+	while (s && s[n_letter])
+	{
+		pass = 0;
+		while ((s[n_letter] && s[n_letter++] != c && ++pass) || (pass && n_word++ < 0))
+			;
+	}
+	split = (char **) ft_calloc(n_word + 1, sizeof (char *));
+	if (!split)
+		return (NULL);		
+	char **split_save = split;
+	char **ss = split;
+	while (*s)
+	{
+		n_letter = 0;
+		while (s[n_letter] && s[n_letter] != c)
+			n_letter++;
+		if (n_letter)
+		{
+			*split = ft_strndup(s, n_letter);
+			if (!*split)
+			{
+				while (*split_save)				
+					free(*split_save++);					
+				free(ss);
+				return (NULL);
+			}
+			split++;
+			s += n_letter - 1;			
+		}	
+		s++;	
+	}
+	return (split - n_word);
 }
 */
+/*
+char	**ft_assin_word(char **split, int n_word, char const *s, char c)
+{
+	size_t	n_letter;
+	int		i;	
+	
+	while (*s)
+	{
+		n_letter = 0;
+		while (s[n_letter] && s[n_letter] != c)
+			n_letter++;
+		if (n_letter)
+		{
+			*split = (char *) ft_calloc((n_letter + 1), sizeof (char));	
+			if (!*split++)
+			{
+				i = 0;
+				while (split[i])
+					free(split[i++]);
+				free(split); 
+				return (NULL);			
+			}
+		}
+		i = 0;	
+		while (n_letter--)
+			(*(split - 1))[i++] = *s++;						
+		if (i) 
+			continue;
+		s++;	
+	}
+	return (split - n_word);
+}
+*/
+
+void	ft_free_split(char **split)
+{
+	int	i;
+	
+	i = 0; 
+	while (split[i])
+		free(split[i++]);
+	free(split); 
+}
+
+char	**ft_assin_word(char **split, int n_word, char const *s, char c)
+{
+	char	**split2;
+	size_t	n_letter;
+	int		i;	
+	
+	split2 = split;
+	while (*s)
+	{
+		n_letter = 0;
+		while (s[n_letter] && s[n_letter] != c)
+			n_letter++;
+		if (n_letter)
+		{
+			*split++ = (char *) ft_calloc((n_letter + 1), sizeof (char));	
+			if (!*(split - 1))
+			{
+				ft_free_split(split2);
+				return (NULL);			
+			}
+		}
+		i = 0;	
+		while ((*s++ && n_letter--)||(i && !s--))
+			(*(split - 1))[i++] = *(s - 1);
+	}
+	return (split - n_word);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**split;
+	int		n_word;
+	int		pass;
+	int		n_letter;
+
+	n_letter = 0;
+	n_word = 0;
+	while (s && s[n_letter])
+	{
+		pass = 0;
+		while ((s[n_letter] && s[n_letter++] != c && ++pass) || (pass && n_word++ < 0))
+			;
+	}
+	split = (char **) ft_calloc(n_word + 1, sizeof (char *));
+	if (!split)
+		return (NULL);			
+	return (ft_assin_word(split, n_word, s, c));
+}
+
+
+// #include <stdio.h>
+// int main(void)
+// {
+// 	char	*s;
+// 	char	**split;
+// 	int		i;
+	
+// 	s = "xxsplitxxmoixlaxxxfacexx"; // 4
+// 	split = ft_split(s, 'x');
+
+// 	i = 0;
+// 	while (split[i])
+// 		printf("1 %s\n", split[i++]);	
+// 	printf("\n");
+	
+// 	s = "splitxxmoixlaxxxfacexx"; //4
+// 	split = NULL;
+// 	split = ft_split(s, 'x');
+	
+// 	i = 0;
+// 	while (split[i])
+// 		printf("2 %s\n", split[i++]);
+// 	printf("\n");
+	
+	
+// 	s = "xxsplitxxmoixlaxxxface"; // 4 ! 9
+// 	split = NULL;
+// 	split = ft_split(s, 'x');
+	
+// 	i = 0;
+// 	while (split[i])
+// 		printf("3 %s\n", split[i++]);
+// 	printf("\n");
+	
+	
+// 	s = "splitxxmoixdoncxxlaxxxface"; // 4 ! 5
+// 	split = NULL;
+// 	split = ft_split(s, 'x');
+	/*
+	i = 0;
+	while (split[i])
+		printf("4 %s\n", split[i++]);
+	printf("\n");
+		
+	s = "splitmoilafacexx"; // 1
+	split = ft_split(s, 'x');
+	
+	i = 0;
+	while (split[i])
+		printf("5 %s\n", split[i++]);
+	printf("\n");
+		
+	s = "xxsplitmoilaface"; // 1 ! 2
+	split = ft_split(s, 'x');
+	
+	i = 0;		
+	while (split[i])
+		printf("6 %s\n", split[i++]);
+	printf("\n");
+		
+	s = "splitmoilaface"; // 1
+	split = ft_split(s, 'x');
+	
+	i = 0;
+	while (split[i])
+		printf("7 %s\n", split[i++]);
+	printf("\n");
+		
+	s = ""; 
+	split = ft_split(s, 'x'); // 0
+
+	i = 0;
+	while (split[i])
+		printf("8 %s\n", split[i++]);
+	printf("\n");
+		
+	s = "splitmoilaface"; // 1
+	split = ft_split(s, 'x');
+
+	i = 0;
+	while (split[i])
+		printf("9 %s\n", split[i++]);
+	printf("\n");
+	
+	s = "splitmoilaface"; // 1
+	split = ft_split(s, 'y');
+
+	i = 0;
+	while (split[i])
+		printf("10 %s\n", split[i++]);
+	printf("\n");
+	
+	s = "splitmoilaface"; // 1
+	split = ft_split(s, '\0');
+
+	i = 0;
+	while (split[i])
+		printf("11 %s\n", split[i++]);
+	printf("\n");
+	
+	s = "xxxxxxx";     // 0
+	split =ft_split(s, 'x');
+	
+	i = 0;
+	while (split[i])
+		printf("12 %s\n", split[i++]);
+	printf("\n");
+	
+	s = "x";     // 0
+	split = ft_split(s, 'x');
+	
+	i = 0;
+	while (split[i])
+		printf("13 %s\n", split[i++]);
+	printf("\n");
+	
+	s = "u";     // 1
+	split = ft_split(s, 'x');
+
+	i = 0;
+	while (split[i])
+		printf("14 %s\n", split[i++]);
+	printf("\n");
+	
+	return (0);	
+}
+	*/
+/*
+char	**ft_split(char const *s, char c)
+{
+	char	**split;
+	int		n_word;
+	int		pass;
+	char const *s2;
+
+	s2 = s;
+	n_word = 0;
+	while (s && *s)
+	{
+		pass = 0;
+		while ((*s && *s++ != c && ++pass) || (pass && n_word++ < 0))
+			;
+	}
+	split = (char **) ft_calloc(n_word + 1, sizeof (char *));
+	//if (!split)
+	//	return (NULL);
+	
+	int	n_letter;
+	while (*s2)
+	{
+		n_letter = 0;
+		while (s2[n_letter] && s2[n_letter] != c)
+			n_letter++;
+		if (n_letter)
+		{
+			*split = (char *) malloc((n_letter + 1) * sizeof (char));	
+			//if (!*split)
+			//	return (NULL);		
+			(*split)[n_letter] = '\0';
+			split++;	
+		}	
+		int d = n_letter;	
+		while (n_letter--)
+			(*(split - 1))[n_letter] = s2[n_letter];		
+		if (d)
+			d--;
+		s2 = s2 + 1 + d;
+	//s++;	
+	}
+	return (split - n_word);
+}
+*/
+
+
+
