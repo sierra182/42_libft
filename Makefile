@@ -21,7 +21,7 @@ all: $(NAME)
 $(NAME) : $(OBJECTS)
 	ar rcs $@ $^ 
 
-bonus : $(OBJECTS_BONUS)
+bonus : $(OBJECTS) $(OBJECTS_BONUS)
 	ar rcs $(NAME) $^
 
 clean :
