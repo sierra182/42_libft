@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 14:06:02 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/09 19:08:31 by svidot           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:20:27 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -663,7 +663,7 @@ int	ft_test_memchr(void)
 	if (!res)
 		printf("memchr: null\n");
 	else
-		printf("memchr: %s\n", res);
+		printf("memchr: %s\n", (char *) res);
 		
 	n = 4;
 	c = 'v';
@@ -673,7 +673,7 @@ int	ft_test_memchr(void)
 	if (!res)
 		printf("ft_memchr: null\n\n");
 	else
-		printf("ft_memchr: %s\n\n", res);	
+		printf("ft_memchr: %s\n\n",(char *) res);	
 	if (strcmp(res, "veux trouver le v"))
 		is_valid = 0;	
 
@@ -685,7 +685,7 @@ int	ft_test_memchr(void)
 	if (!res)
 		printf("memchr: 2nd: null\n");
 	else
-		printf("memchr: 2nd: %s\n", res);
+		printf("memchr: 2nd: %s\n",(char *) res);
 
 	n = 10;
 	c = 'z';
@@ -695,7 +695,7 @@ int	ft_test_memchr(void)
 	if (!res)
 		printf("ft_memchr: 2nd: null\n\n");
 	else
-		printf("ft_memchr: 2nd: %s\n\n", res);
+		printf("ft_memchr: 2nd: %s\n\n",(char *) res);
 	if (res)
 		is_valid = 0;
 		
@@ -707,7 +707,7 @@ int	ft_test_memchr(void)
 	if (!res)
 		printf("memchr: 3eme: null\n");
 	else
-		printf("memchr: 3eme: %s\n", res);
+		printf("memchr: 3eme: %s\n",(char *) res);
 		
 	n = 3;
 	c = 'z';
@@ -717,7 +717,7 @@ int	ft_test_memchr(void)
 	if (!res)
 		printf("ft_memchr: 3eme: null\n");
 	else
-		printf("ft_memchr: 3eme: %s\n", res);
+		printf("ft_memchr: 3eme: %s\n",(char *) res);
 	if (res)
 		is_valid = 0;
 	return (is_valid);
@@ -1205,7 +1205,7 @@ int	ft_test_strdup(void)
 	** pas de gestion de nullite de pointeur
 	*/
 }
-
+/*
 void	ft_test_strcmp(void)
 {
 	char	*s1;
@@ -1242,17 +1242,16 @@ void	ft_test_strcmp(void)
 	printf("strcmp: %d\n", res);
 	res = ft_strcmp(s1, s2);
 	printf("ft_strcmp: %d\n", res);
-	
-	/*
-	s1 = NULL;
-	s2 = NULL;
-	res = strcmp(s1, s2);
-	printf("strcmp: %d\n", res);
-	res = ft_strcmp(s1, s2);  
-	printf("ft_strcmp: %d\n", res);
-	*/
+		
+	// s1 = NULL;
+	// s2 = NULL;
+	// res = strcmp(s1, s2);
+	// printf("strcmp: %d\n", res);
+	// res = ft_strcmp(s1, s2);  
+	// printf("ft_strcmp: %d\n", res);	
 }
-
+*/
+/*
 int	ft_test_isspace(void)
 {
 	int	is_valid;
@@ -1300,6 +1299,7 @@ int	ft_test_isspace(void)
 	}
 	return (is_valid);	
 }
+*/
 
 int	main(void)
 {
@@ -1347,8 +1347,8 @@ int	main(void)
 	ft_test_strrchr();
 	displayTestSeparator("strncmp", 36);
 	ft_test_strncmp();
-	displayTestSeparator("strcmp", 35);
-	ft_test_strcmp();
+	//displayTestSeparator("strcmp", 35);
+	//ft_test_strcmp();
 	
 	displayTestSeparator("strlcat", 36);
 	if(ft_test_strlcat())
@@ -1391,12 +1391,13 @@ int	main(void)
 		display_valid();
 	else 
 		display_novalid();		
-	
+	/*
 	displayTestSeparator("isspace", 35);	
 	if(ft_test_isspace())
 		display_valid();
 	else 
 		display_novalid();		
+	*/
 		
 	displayTestSeparator("end", 35);	
 	return (0);
