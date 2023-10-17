@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:51:19 by svidot            #+#    #+#             */
-/*   Updated: 2023/10/15 23:00:46 by seblin           ###   ########.fr       */
+/*   Updated: 2023/10/17 22:04:33 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		s1_uc++;
 		s2_uc++;
 	}
-	return (*s1_uc - *s2_uc);
+	return ((const unsigned char) *s1_uc - (const unsigned char) *s2_uc);
 }
